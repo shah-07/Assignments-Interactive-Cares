@@ -41,7 +41,7 @@ class CLIApp
       switch ($choice) {
         case self::ADD_INCOME:
           $amount = (float) trim(readline("Enter imcome amount: "));
-          $catergory = trim(readline("Enter income category: "));
+          $category = trim(readline("Enter income category: "));
           $this->financeManager->addIncome($amount, $category);
           break;
         case self::ADD_EXPENSE:

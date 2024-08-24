@@ -1,0 +1,3 @@
+{"type":"income","amount":4700,"category":"tuition"}
+{"type":"income","amount":4000,"category":"refund"}
+{"type":"expense","amount":7300,"category":"others"}

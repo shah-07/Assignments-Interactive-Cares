@@ -24,16 +24,25 @@ class FinanceManager
   public function showIncomes(): void
   {
     $incomes = $this->storage->getIncomes();
-    foreach ($incomes as $income) {
-      printf("Amount: %f, Category: %s\n", $income['amount'], $income['category']);
+    if (!empty($incomes)) {
+      foreach ($incomes as $income) {
+        printf("Amount: %f, Category: %s\n", $income['amount'], $income['category']);
+      }
+    } else {
+      printf("Income Data Not Found!\n");
     }
+
   }
 
   public function showExpenses(): void
   {
     $expenses = $this->storage->getExpenses();
-    foreach ($expenses as $expense) {
-      printf("Amount: %f, Category: %s\n", $expense['amount'], $expense['category']);
+    if (!empty($expenses)) {
+      foreach ($expenses as $expense) {
+        printf("Amount: %f, Category: %s\n", $expense['amount'], $expense['category']);
+      }
+    } else {
+      printf("Expense Data Not Found!\n");
     }
   }
 
@@ -49,9 +58,14 @@ class FinanceManager
   public function showCategories(): void
   {
     $categories = $this->storage->getCategories();
-    foreach ($categories as $categoryName => $categoryType) {
-      printf("Name: %s, Type: %s\n", $categoryName, $categoryType);
+    if (!empty($categories)) {
+      foreach ($categories as $categoryName => $categoryType) {
+        printf("Name: %s, Type: %s\n", $categoryName, $categoryType);
+      }
+    } else {
+      printf("Categories Data Not Found!\n");
     }
+
   }
 
 }
