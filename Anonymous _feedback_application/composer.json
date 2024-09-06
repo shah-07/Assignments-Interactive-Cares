@@ -1,0 +1,16 @@
+{
+    "name": "shahbaj/anonymous_feedback_application",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JABALE NOOR SHAHBAJ",
+            "email": "nurmohammadshahbaj@gmail.com"
+        }
+    ],
+    "require": {}
+}
