@@ -8,14 +8,19 @@ class LoginController
 {
   public function login()
   {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $user = new User();
-    if ($user->authenticate($username, $password)) {
-      $_SESSION['username'] = $username;
-      header('Location: dashboard');
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      $user = new User();
+      if ($user->authenticate($username, $password)) {
+        $_SESSION['username'] = $username;
+        header('Location: dashboard');
+      } else {
+        echo 'Invalid username or password';
+      }
+
     } else {
-      echo 'Invalid username or password';
+      require_once __DIR__ . '/../Views/login.php';
     }
   }
 }

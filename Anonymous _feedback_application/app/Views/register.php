@@ -1,11 +1,3 @@
-<?php
-
-namespace App\Views;
-use App\Controllers\RegisterController;
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +12,7 @@ use App\Controllers\RegisterController;
     <header class="bg-white">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="./index.php" class="-m-1.5 p-1.5">
+                <a href="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">TruthWhisper</span>
                     <span
                         class="block font-bold text-lg bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
@@ -38,7 +30,7 @@ use App\Controllers\RegisterController;
                 </button>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="./login.php" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                <a href="/login" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
                         aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
@@ -49,7 +41,7 @@ use App\Controllers\RegisterController;
             <div
                 class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
-                    <a href="./index.php" class="-m-1.5 p-1.5">
+                    <a href="/" class="-m-1.5 p-1.5">
                         <span class="sr-only">TruthWhisper</span>
                         <span
                             class="block font-bold text-xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
@@ -65,7 +57,7 @@ use App\Controllers\RegisterController;
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="py-6">
-                            <a href="./login.php"
+                            <a href="/login"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log
                                 in</a>
                         </div>
@@ -77,10 +69,10 @@ use App\Controllers\RegisterController;
 
     <main class="">
         <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-            <img src="./images/beams.jpg" alt=""
+            <img src="<?php echo IMG_DIR . "beams.jpg" ?>" alt=""
                 class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
             <div
-                class="absolute inset-0 bg-[url(./images/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+                class="absolute inset-0 bg-[url(<?php echo IMG_DIR . "grid.svg" ?>)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
             </div>
             <div
                 class="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
@@ -142,18 +134,9 @@ use App\Controllers\RegisterController;
                                 </div>
                             </form>
 
-                            <?php
-                            // Create a new RegisterController object
-                            $register_controller = new RegisterController();
-
-                            var_dump($register_controller);
-                            // Call the register function on the controller
-                            $register_controller->register();
-                            ?>
-
                             <p class="mt-10 text-center text-sm text-gray-500">
                                 Already have an account?
-                                <a href="./login.php"
+                                <a href="/login"
                                     class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Login!</a>
                             </p>
                         </div>

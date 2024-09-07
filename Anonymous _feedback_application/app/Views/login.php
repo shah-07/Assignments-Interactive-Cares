@@ -12,7 +12,7 @@
     <header class="bg-white">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="./index.php" class="-m-1.5 p-1.5">
+                <a href="/" class="-m-1.5 p-1.5">
                     <span class="sr-only">TruthWhisper</span>
                     <span
                         class="block font-bold text-lg bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
@@ -41,7 +41,7 @@
             <div
                 class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
-                    <a href="./index.php" class="-m-1.5 p-1.5">
+                    <a href="/" class="-m-1.5 p-1.5">
                         <span class="sr-only">TruthWhisper</span>
                         <span
                             class="block font-bold text-xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
@@ -69,10 +69,10 @@
 
     <main class="">
         <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-            <img src="./images/beams.jpg" alt=""
+            <img src="<?php echo IMG_DIR . "beams.jpg" ?>" alt=""
                 class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
             <div
-                class="absolute inset-0 bg-[url(./images/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+                class="absolute inset-0 bg-[url(<?php echo IMG_DIR . "grid.svg" ?>)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
             </div>
             <div
                 class="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
@@ -121,7 +121,7 @@
 
                             <p class="mt-10 text-center text-sm text-gray-500">
                                 Not a member?
-                                <a href="./register.php"
+                                <a href="/register"
                                     class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Register
                                     now!</a>
                             </p>
