@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 
 require_once 'config.php';
 require_once __DIR__ . "/vendor/autoload.php";
@@ -16,4 +16,4 @@ define('IMG_DIR', '../app/Views/images/');
 
 require_once 'app/Routes/routes.php';
 
-
+session_unset();

@@ -21,20 +21,22 @@ class RegisterController
       $result = $user->register($name, $email, $password, $confirm_password);
 
       // Handle the result
-      if ($result) {
+      if (isset($result['error'])) {
+        $_SESSION['error'] = $result['error'];
+        $_SESSION['user_data'] = array('name' => $name, 'email' => $email, 'password' => $password, 'confirm_password' => $confirm_password);
+        header('Location: /register');
+        exit;
+      } elseif (isset($result['success'])) {
         // Redirect to login page
-        header('Location: login.php');
+        header('Location: /login');
         exit;
       } else {
-        // Display error message
-        $error = 'Registration failed';
-        // You can also redirect back to the registration form with the error message
+        // Handle unexpected result
+        $error = 'Unexpected error occurred';
       }
 
     } else {
       require_once __DIR__ . '/../Views/register.php';
     }
-
-
   }
 }

@@ -85,12 +85,13 @@
                         </div>
 
                         <div class="mt-10 mx-auto w-full max-w-xl">
-                            <form class="space-y-6" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                            <form class="space-y-6" action="/register" method="POST">
                                 <div>
                                     <label for="name"
                                         class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                                     <div class="mt-2">
-                                        <input id="name" name="name" type="text" required
+                                        <input id="name" name="name" type="text"
+                                            value="<?php echo $_SESSION['user_data']['name'] ?? ''; ?>" required
                                             class="block w-full rounded-md border-0 pl-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
@@ -99,7 +100,8 @@
                                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                                         address</label>
                                     <div class="mt-2">
-                                        <input id="email" name="email" type="email" autocomplete="email" required
+                                        <input id="email" name="email" type="email" autocomplete="email"
+                                            value="<?php echo $_SESSION['user_data']['email'] ?? ''; ?>" required
                                             class="block w-full rounded-md border-0 pl-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
@@ -111,8 +113,12 @@
                                     </div>
                                     <div class="mt-2">
                                         <input id="password" name="password" type="password"
+                                            value="<?php echo $_SESSION['user_data']['password'] ?? ''; ?>"
                                             autocomplete="current-password" required
                                             class="block w-full rounded-md border-0 pl-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <p style="cursor: pointer;" id="toggle-password"
+                                            onclick="togglePasswordVisibility()">Show
+                                            password</p>
                                     </div>
                                 </div>
 
@@ -123,7 +129,9 @@
                                             Password</label>
                                     </div>
                                     <div class="mt-2">
-                                        <input id="confirm_password" name="confirm_password" type="password" required
+                                        <input id="confirm_password" name="confirm_password" type="password"
+                                            value="<?php echo $_SESSION['user_data']['confirm_password'] ?? ''; ?>"
+                                            required
                                             class="block w-full rounded-md border-0 pl-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
                                 </div>
@@ -133,6 +141,13 @@
                                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</button>
                                 </div>
                             </form>
+                            <?php if (isset($_SESSION['error'])): ?>
+                                <p class="mt-2 text-center text-sm text-red-500">
+                                    <?= $_SESSION['error'] ?>
+                                </p>
+                                <?php unset($_SESSION['error'], $_SESSION['user_data']); ?>
+                            <?php endif; ?>
+
 
                             <p class="mt-10 text-center text-sm text-gray-500">
                                 Already have an account?
@@ -156,3 +171,20 @@
 </body>
 
 </html>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.getElementById('toggle-password');
+
+        toggleButton.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = 'Hide password';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = 'Show password';
+            }
+        });
+    }
+</script>
