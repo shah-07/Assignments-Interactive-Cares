@@ -1,1 +1,1 @@
-[{"uniqueKey":"8d5cb9c","username":"shahbaj","email":"shahbaj@gmail.com","password":"$2y$10$GyMUwWzWPqnlcBqhGiIl3OGOzxkCz3CqMQ6XiLxMKD8QS32PbLcd2"}]
+[{"uniqueKey":"8d5cb9c","username":"shahbaj","email":"shahbaj@gmail.com","password":"$2y$10$GyMUwWzWPqnlcBqhGiIl3OGOzxkCz3CqMQ6XiLxMKD8QS32PbLcd2"},{"uniqueKey":"5bd96d6","username":"Jabale Noor Shahbaj","email":"nurmohammadshahbaj@gmail.com","password":"$2y$10$qd5A.IWZm3htrS71SIlEKOs5RF91gMz.pyAcvIGeNK\/gpptbsS3Oe"}]
