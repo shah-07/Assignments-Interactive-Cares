@@ -33,7 +33,7 @@
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
       <div class="px-6 py-12 bg-white shadow sm:rounded-lg sm:px-12">
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6" action="/login" method="POST">
           <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div class="mt-2">
