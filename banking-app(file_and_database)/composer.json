@@ -1,0 +1,15 @@
+{
+    "name": "shahbaj/banking-app",
+    "autoload": {
+        "psr-4": {
+            "App\\": "http/"
+        }
+    },
+    "authors": [
+        {
+            "name": "JABALE NOOR SHAHBAJ",
+            "email": "nurmohammadshahbaj@gmail.com"
+        }
+    ],
+    "require": {}
+}
