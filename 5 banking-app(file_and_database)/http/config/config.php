@@ -1,5 +1,6 @@
 <?php
-// config.php
+
+
 return [
     'storage' => 'database', // Change to 'file' or 'database' for storage
     'db' => [
