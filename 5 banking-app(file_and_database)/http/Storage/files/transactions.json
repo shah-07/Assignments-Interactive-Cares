@@ -1,0 +1,113 @@
+{
+    "nurmohammadshahbaj@gmail.com": [
+        {
+            "type": "Deposit",
+            "amount": "1000",
+            "date": "28 Sep 2024, 10:24:40 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Transfer",
+            "amount": "100",
+            "date": "28 Sep 2024, 10:25:01 PM",
+            "toEmail": "hafu@mailinator.com",
+            "fromEmail": "nurmohammadshahbaj@gmail.com"
+        },
+        {
+            "type": "Withdraw",
+            "amount": "50",
+            "date": "28 Sep 2024, 10:25:06 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Deposit",
+            "amount": "1000",
+            "date": "30 Sep 2024, 05:01:50 AM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Withdraw",
+            "amount": "50",
+            "date": "01 Oct 2024, 02:41:59 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Deposit",
+            "amount": "20",
+            "date": "08 Oct 2024, 12:54:34 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Deposit",
+            "amount": "20",
+            "date": "08 Oct 2024, 02:00:40 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Deposit",
+            "amount": "20",
+            "date": "08 Oct 2024, 02:16:34 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Deposit",
+            "amount": "80",
+            "date": "08 Oct 2024, 02:57:25 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Withdraw",
+            "amount": "100",
+            "date": "08 Oct 2024, 03:00:28 PM",
+            "toEmail": null,
+            "fromEmail": null
+        }
+    ],
+    "hafu@mailinator.com": [
+        {
+            "type": "Received",
+            "amount": "100",
+            "date": "28 Sep 2024, 10:25:01 PM",
+            "toEmail": "hafu@mailinator.com",
+            "fromEmail": "nurmohammadshahbaj@gmail.com"
+        },
+        {
+            "type": "Deposit",
+            "amount": "500",
+            "date": "28 Sep 2024, 10:25:29 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Withdraw",
+            "amount": "300",
+            "date": "28 Sep 2024, 10:25:38 PM",
+            "toEmail": null,
+            "fromEmail": null
+        },
+        {
+            "type": "Transfer",
+            "amount": "50",
+            "date": "28 Sep 2024, 10:25:57 PM",
+            "toEmail": "jarihym@mailinator.com",
+            "fromEmail": "hafu@mailinator.com"
+        }
+    ],
+    "jarihym@mailinator.com": [
+        {
+            "type": "Received",
+            "amount": "50",
+            "date": "28 Sep 2024, 10:25:57 PM",
+            "toEmail": "jarihym@mailinator.com",
+            "fromEmail": "hafu@mailinator.com"
+        }
+    ]
+}
