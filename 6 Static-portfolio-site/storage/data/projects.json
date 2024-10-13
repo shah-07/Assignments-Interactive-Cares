@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "E-commerce Web Application",
+        "description": "Developed a fully functional e-commerce platform using React and Node.js, enabling a seamless shopping experience for users.",
+        "image": "app-1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Mobile Fitness Tracker",
+        "description": "Created a mobile application that tracks fitness activities and provides personalized workout plans, leading to a 25% increase in user engagement.",
+        "image": "app-2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Real-time Chat Application",
+        "description": "Built a real-time chat application using WebSocket technology, allowing users to communicate instantly with high reliability.",
+        "image": "app-3.jpg"
+    }
+]

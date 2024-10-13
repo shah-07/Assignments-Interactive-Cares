@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "title": "Software Engineer at ABC Corporation",
+        "start year": "2019",
+        "end year": "2020",
+        "description": "Designed and developed multiple software applications using Java and Python, resulting in a 30% increase in company revenue.",
+        "image": "work-experience-1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Data Analyst at DEF Startups",
+        "start year": "2021",
+        "end year": "2022",
+        "description": "Analyzed large datasets to identify trends and patterns, creating data visualizations and reports that informed business decisions and drove growth.",
+        "image": "work-experience-2.jpg"
+    }
+]
