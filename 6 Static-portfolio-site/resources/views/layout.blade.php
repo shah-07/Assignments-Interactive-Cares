@@ -62,8 +62,8 @@
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="/" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="#about"><i class="bi bi-hdd-stack navicon"></i> Work Experience</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Projects</a></li>
+        <li><a href="/experiences"><i class="bi bi-hdd-stack navicon"></i> Work Experience</a></li>
+        <li><a href="/projects"><i class="bi bi-images navicon"></i> Projects</a></li>
       </ul>
     </nav>
 
