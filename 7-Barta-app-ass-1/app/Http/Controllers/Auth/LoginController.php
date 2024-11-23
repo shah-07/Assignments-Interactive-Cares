@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -33,7 +34,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('welcome')
+            return redirect()->intended(route('home'))
                         ->withSuccess('You have Successfully loggedin');
         }
 
@@ -45,12 +46,11 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    // public function logout()
-    // {
-    //     // Clear the user session
-    //     session()->forget(['user_id', 'user_name']);
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
 
-    //     // Redirect to the login page
-    //     return redirect()->route('login');
-    // }
+        return Redirect('login');
+    }
 }
