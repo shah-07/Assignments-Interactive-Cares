@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\RegisterUserRequest;
 
 class RegisterController extends Controller
 {
@@ -26,35 +27,17 @@ class RegisterController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function register(Request $request)
+    public function register(RegisterUserRequest  $request)
     {
-        dd($request->all());
-        $this->validator($request->all());
+        $validated = $request->validated();
 
-        $this->create($request->all());
+        $this->create($validated);
 
-        $credentials = $request->only('email', 'password');
-        Auth::attempt($credentials);
+        Auth::attempt($request->only('email', 'password'));
         $request->session()->regenerate();
 
-        return redirect()->route('home')
-        ->withSuccess('You have successfully registered & logged in!');
-    }
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
+        return redirect()->route('dashboard')
+        ->with('success', 'You have successfully registered & logged in!');
     }
 
     /**

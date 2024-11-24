@@ -20,7 +20,7 @@
 <body class="h-full">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <a href="./index.html" class="text-center text-6xl font-bold text-gray-900">
+            <a href="#" class="text-center text-6xl font-bold text-gray-900">
                 <h1>Barta</h1>
             </a>
 
