@@ -21,5 +21,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('profile/{username}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });

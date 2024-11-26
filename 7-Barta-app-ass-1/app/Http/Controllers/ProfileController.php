@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -33,22 +34,51 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $id = Auth::id();
-        // Fetch the user data based on the ID
-        $userData = DB::table('users')->where('id', $id)->first();
+        $userId = Auth::id();
 
-        if (!$userData) {
-            abort(404, 'User not found');
-        }
+        $user = DB::table('users')
+            ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+            ->where('users.id', $userId)
+            ->select('users.name', 'users.email', 'profiles.bio')
+            ->first();
 
-        return view('profile.edit', ['user' => $userData]);
+        // Split the name into first and last name
+        $nameParts = explode(' ', $user->name, 2);
+        $user->first_name = $nameParts[0];
+        $user->last_name = $nameParts[1] ?? '';
+
+        return view('profile.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProfileRequest $request)
     {
-        //
+        $userId = Auth::id();
+        $user = Auth::user();
+
+        $validated = $request->validated();
+
+        $updateData = [
+            'name' => $validated['first-name'] . ' ' . $validated['last-name'],
+            'email' => $validated['email'],
+        ];
+
+        if ($request->filled('password')) {
+            $updateData['password'] = bcrypt($validated['password']);
+        }
+
+        DB::table('users')
+        ->where('id', $userId)
+        ->update($updateData);
+
+        DB::table('profiles')
+        ->updateOrInsert(
+            ['user_id' => $userId],
+            ['bio' => $validated['bio'] ?? '']
+        );
+
+        return redirect()->route('profile.show', ['username' => $user->username])->with('success', 'Profile updated successfully!');
     }
 }
