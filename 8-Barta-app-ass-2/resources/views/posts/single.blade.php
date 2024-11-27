@@ -1,6 +1,8 @@
-<section id="newsfeed" class="space-y-6">
-    @foreach ($posts as $post)
-        <article class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6">
+@extends('layouts.app')
+
+@section('content')
+    <section id="newsfeed" class="space-y-6">
+        <article class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 mb-5">
             <!-- Barta Card Top -->
             <header>
                 <div class="flex items-center justify-between">
@@ -53,8 +55,15 @@
                                     <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                    <form class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="block text-sm text-gray-700 hover:bg-gray-100">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 
@@ -65,13 +74,11 @@
             </header>
 
             <!-- Content -->
-            <a href="{{ route('posts.show', ['post' => $post->id]) }}">
-                <div class="py-4 text-gray-700 font-normal">
-                    <p>
-                        {{ $post->content }} <!-- Post content -->
-                    </p>
-                </div>
-            </a>
+            <div class="py-4 text-gray-700 font-normal">
+                <p>
+                    {{ $post->content }} <!-- Post content -->
+                </p>
+            </div>
 
 
             <!-- Date Created & View Stat -->
@@ -81,5 +88,8 @@
                 <span>450 views</span> <!-- Assuming you have views column -->
             </div>
         </article>
-    @endforeach
-</section>
+        <a href="{{ url()->previous() }}" type="button"
+            class="rounded-full border px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
+            <- Go back </a>
+    </section>
+@endsection

@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    /**
+     * Show single post
+     */
+    public function show(string $id){
+        $post = DB::table('posts')
+            ->where('id', $id)
+            ->first();
+
+        if (!$post) {
+            return redirect()->route('dashboard')->with('error', 'Post not found.');
+        }
+
+        $post->formatted_date = Carbon::parse($post->created_at)->diffForHumans();
+
+        $user = DB::table('users')
+            ->where('users.id', $post->user_id)
+            ->select('users.name','users.username')
+            ->first();
+
+        return view('posts.single', compact('user', 'post'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -32,22 +55,23 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        // Fetch the post by ID using DB facade
         $post = DB::table('posts')->where('id', $id)->first();
 
-        // Check if post exists
         if (!$post) {
-            return redirect()->route('home')->with('error', 'Post not found.');
+            return redirect()->route('dashboard')->with('error', 'Post not found.');
         }
 
-        // Check if the authenticated user is the owner of the post
         $userId = Auth::id();
         if ($userId !== $post->user_id) {
-            return redirect()->route('home')->with('error', 'You are not authorized to edit this post.');
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to edit this post.');
         }
 
-        // Pass the post data to the edit view
-        return view('posts.edit', compact('post'));
+        $user = DB::table('users')
+            ->where('users.id', $post->user_id)
+            ->select('users.name','users.username')
+            ->first();
+
+        return view('posts.edit', compact('user','post'));
     }
 
     /**
@@ -55,7 +79,18 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        DB::table('posts')
+            ->where('id', $id)
+            ->update([
+                'content' => $validated['content'],
+                'updated_at' => now(),
+            ]);
+
+        return redirect()->route('posts.show', ['post' => $id])->with('success', 'Post updated successfully!');
     }
 
     /**
@@ -63,6 +98,23 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = DB::table('posts', )->where('id', $id)->first();
+
+        if (!$post) {
+            return redirect()->route('dashboard' )->with('error', 'Post not found.');
+        }
+
+        if ($post->user_id !== Auth::id()) {
+            return redirect()->route('dashboard')->with('error', 'You are not authorized to delete this post.');
+        }
+
+        $username = DB::table('users')
+            ->where('users.id', $post->user_id)
+            ->select('users.username')
+            ->first();
+
+        DB::table('posts')->where('id', $id)->delete();
+
+        return redirect()->route('profile.show', ['username', $username])->with('success', 'Post deleted successfully!');
     }
 }
