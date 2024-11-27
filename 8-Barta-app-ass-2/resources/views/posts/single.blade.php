@@ -53,14 +53,14 @@
                                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                     tabindex="-1">
                                     <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                                        tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <form class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                        class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this post?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="block text-sm text-gray-700 hover:bg-gray-100">
+                                        <button type="submit"
+                                            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             Delete
                                         </button>
                                     </form>

@@ -53,8 +53,15 @@
                                     <a href="{{ route('posts.edit', ['post' => $post->id]) }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 

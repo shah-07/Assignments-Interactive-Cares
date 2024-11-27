@@ -55,9 +55,7 @@ class ProfileController extends Controller
             ->first();
 
         // Split the name into first and last name
-        $nameParts = explode(' ', $user->name, 2);
-        $user->first_name = $nameParts[0];
-        $user->last_name = $nameParts[1] ?? '';
+        [$user->first_name, $user->last_name] = array_pad(explode(' ', $user->name, 2), 2, '');
 
         return view('profile.edit', compact('user'));
     }

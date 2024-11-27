@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 
 Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [RegisterController::class, 'register']);
@@ -16,9 +17,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');

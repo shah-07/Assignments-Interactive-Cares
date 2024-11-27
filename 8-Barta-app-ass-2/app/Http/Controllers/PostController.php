@@ -90,7 +90,9 @@ class PostController extends Controller
                 'updated_at' => now(),
             ]);
 
-        return redirect()->route('posts.show', ['post' => $id])->with('success', 'Post updated successfully!');
+        $userName = Auth::user()->username;
+
+        return redirect()->route('profile.show', $userName)->with('success', 'Post updated successfully!');
     }
 
     /**
@@ -108,13 +110,10 @@ class PostController extends Controller
             return redirect()->route('dashboard')->with('error', 'You are not authorized to delete this post.');
         }
 
-        $username = DB::table('users')
-            ->where('users.id', $post->user_id)
-            ->select('users.username')
-            ->first();
+        $userName = Auth::user()->username;
 
         DB::table('posts')->where('id', $id)->delete();
 
-        return redirect()->route('profile.show', ['username', $username])->with('success', 'Post deleted successfully!');
+        return redirect()->route('profile.show', $userName)->with('success', 'Post deleted successfully!');
     }
 }

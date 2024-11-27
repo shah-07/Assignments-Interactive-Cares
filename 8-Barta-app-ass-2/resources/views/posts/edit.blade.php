@@ -35,6 +35,16 @@
             </header>
 
             <!-- Create Post Card Top -->
+            @if ($errors->any())
+                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -54,13 +64,6 @@
                     <div class="flex items-center justify-end">
                         <div class="flex space-x-6">
                             <!-- Post Button -->
-                            <a href="{{ url()->previous() }}">
-                                <button type="submit"
-                                    class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-red-800 text-white">
-                                    Cancel
-                                </button>
-                            </a>
-
                             <button type="submit"
                                 class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">
                                 Update
@@ -74,5 +77,8 @@
             </form>
             <!-- /Create Post Card Bottom -->
         </article>
+        <a href="{{ route('profile.show', ['username' => $user->username]) }}" type="button"
+            class="rounded-full border px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
+            Cancel X </a>
     </section>
 @endsection
