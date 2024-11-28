@@ -17,7 +17,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');

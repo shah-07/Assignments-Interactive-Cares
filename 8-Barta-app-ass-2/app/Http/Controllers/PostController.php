@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ContentRequest;
 
 class PostController extends Controller
 {
@@ -34,15 +35,15 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContentRequest $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'content' => 'required|string',
         ]);
 
         DB::table('posts')->insert([
-            'content' => $request->content,
-            'user_id' => Auth::id(),  // User who created the post
+            'content' => $validated['content'],
+            'user_id' => Auth::id(),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -77,7 +78,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ContentRequest $request, string $id)
     {
         $validated = $request->validate([
             'content' => 'required|string',

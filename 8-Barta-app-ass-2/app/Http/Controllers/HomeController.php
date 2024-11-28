@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
+        $user = Auth::user();
 
-        if (!Auth::user()) {
+        if (!$user) {
             abort(404, 'User not found');
         }
 
@@ -25,6 +26,6 @@ class HomeController extends Controller
                 return $post;
             });
 
-        return view("dashboard", compact( 'posts'));
+        return view("dashboard", compact( 'user','posts'));
     }
 }

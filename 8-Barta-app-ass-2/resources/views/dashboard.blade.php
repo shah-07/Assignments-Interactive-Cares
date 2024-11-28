@@ -22,7 +22,7 @@
 
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                <a href="{{ route('profile.show', ['username' => $post->username]) }}"
+                                <a href="{{ route('profile.show', ['username' => $user->username]) }}"
                                     class="hover:underline font-semibold line-clamp-1">
                                     {{ $post->name }}
                                 </a>
