@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ContentRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -29,9 +30,15 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
+        $imagePath = null;
+        if ($request->hasFile('picture')) {
+            $imagePath = $request->file('picture')->store('posts', 'public');
+        }
+
         Post::create([
             'content' => $validated['content'],
             'user_id' => Auth::id(),
+            'image' => $imagePath,
         ]);
 
         return back()->with('success', 'Post created successfully!');
@@ -61,21 +68,31 @@ class PostController extends Controller
      */
     public function update(ContentRequest $request, string $id)
     {
-        $validated = $request->validated();
-
-        $post = Post::find($id);
-
-        if (!$post) {
-            return redirect()->route('dashboard')->with('error', 'Post not found.');
-        }
+        $post = Post::findOrFail($id);
 
         if (Auth::id() !== $post->user_id) {
             return redirect()->route('dashboard')->with('error', 'You are not authorized to update this post.');
         }
 
-        $post->update([
-            'content' => $validated['content'],
-        ]);
+        $post->content = $request->validated()['content'];
+
+        if ($request->has('delete_picture')) {
+            if (Storage::disk('public')->exists($post->image)) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $post->image = null;
+        }
+
+
+        if ($request->hasFile('picture')) {
+            if ($post->image && Storage::disk('public')->exists($post->image)) {
+                Storage::disk('public')->delete($post->image);
+            }
+
+            $post->image = $request->file('picture')->store('posts', 'public');
+        }
+
+        $post->save();
 
         return redirect()->route('profile.show', Auth::user()->username)
             ->with('success', 'Post updated successfully!');

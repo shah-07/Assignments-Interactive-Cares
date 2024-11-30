@@ -23,6 +23,7 @@ class ContentRequest extends FormRequest
     {
         return [
             'content' => 'required|string|max:100',
+            'picture' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ];
     }
 

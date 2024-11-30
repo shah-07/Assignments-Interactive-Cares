@@ -7,12 +7,12 @@
         <!-- Profile Info -->
         <div class="flex gap-4 justify-center flex-col text-center items-center">
             <!-- Avatar -->
-            {{-- <div class="relative">
+            <div class="relative">
                 <img class="w-32 h-32 rounded-full border-2 border-gray-800"
                     src="https://avatars.githubusercontent.com/u/831997" alt="Ahmed Shamim" />
                 <span
                     class="bottom-2 right-4 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
-            </div> --}}
+            </div>
             <!-- /Avatar -->
 
             <!-- User Meta -->
@@ -25,26 +25,19 @@
         <!-- /Profile Info -->
 
         <!-- Profile Stats -->
-        <!--        <div-->
-        <!--          class="flex flex-row gap-16 justify-center text-center items-center">-->
-        <!--          &lt;!&ndash; Total Posts Count &ndash;&gt;-->
-        <!--          <div class="flex flex-col justify-center items-center">-->
-        <!--            <h4 class="sm:text-xl font-bold">405</h4>-->
-        <!--            <p class="text-gray-600">Posts</p>-->
-        <!--          </div>-->
+        <div class="flex flex-row gap-16 justify-center text-center items-center">
+            <!-- Total Posts Count -->
+            <div class="flex flex-col justify-center items-center">
+                <h4 class="sm:text-xl font-bold">3</h4>
+                <p class="text-gray-600">Posts</p>
+            </div>
 
-        <!--          &lt;!&ndash; Total Friends Count &ndash;&gt;-->
-        <!--          <div class="flex flex-col justify-center items-center">-->
-        <!--            <h4 class="sm:text-xl font-bold">1,334</h4>-->
-        <!--            <p class="text-gray-600">Friends</p>-->
-        <!--          </div>-->
-
-        <!--          &lt;!&ndash; Total Followers Count &ndash;&gt;-->
-        <!--          <div class="flex flex-col justify-center items-center">-->
-        <!--            <h4 class="sm:text-xl font-bold">18,589</h4>-->
-        <!--            <p class="text-gray-600">Followers</p>-->
-        <!--          </div>-->
-        <!--        </div>-->
+            <!-- Total Comments Count -->
+            <div class="flex flex-col justify-center items-center">
+                <h4 class="sm:text-xl font-bold">14</h4>
+                <p class="text-gray-600">Comments</p>
+            </div>
+        </div>
         <!-- /Profile Stats -->
 
         <!-- Edit Profile Button (Only visible to the profile owner) -->
