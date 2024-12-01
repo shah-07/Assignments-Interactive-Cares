@@ -2,11 +2,10 @@
 
 ## Tasks
 
--   Create post
--   View single post
--   Edit post (only by the author)
--   Delete post (only by the author)
--   Show all posts on Home feed
+-   Instead of DB query builder, use the Eloquent model.
+-   Users should be able to post images in the post (only one image per post).
+-   Users should be able to add profile pictures.
+-   Implement search functionality with user nick name, user full name or email
 
 ## Steps
 

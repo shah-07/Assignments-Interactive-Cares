@@ -18,15 +18,15 @@
         <div class="flex items-start /space-x-3/">
             <!-- User Avatar -->
             <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full object-cover" src="https://avatars.githubusercontent.com/u/831997"
-                    alt="Ahmed Shamim" />
+                <img class="h-10 w-10 rounded-full object-cover" src="{{ $user->profile->avatar_url }}"
+                    alt="{{ $user->name }}" />
             </div>
             <!-- /User Avatar -->
             <!-- Content -->
             <div class="text-gray-700 font-normal w-full">
                 <textarea
                     class="block w-full p-2 pt-2 text-gray-900 rounded-lg border-none outline-none focus:ring-0 focus:ring-offset-0"
-                    name="content" rows="2" placeholder="What's going on, {{ explode(' ', $user->name)[0] }}?"></textarea>
+                    name="content" rows="2" placeholder="What's going on, {{ explode(' ', $user->name)[0] }}?">{{ old('content', '') }}</textarea>
             </div>
         </div>
     </div>

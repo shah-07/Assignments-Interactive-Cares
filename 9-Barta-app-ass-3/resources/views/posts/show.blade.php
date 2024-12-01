@@ -78,7 +78,7 @@
                         <img src="{{ $post->image_url }}"
                             class="min-h-auto w-full rounded-lg object-cover max-h-64 md:max-h-72" alt="" />
                     @endif
-                    <p>
+                    <p class="mt-2">
                         {{ $post->content }} <!-- Post content -->
                     </p>
                 </div>

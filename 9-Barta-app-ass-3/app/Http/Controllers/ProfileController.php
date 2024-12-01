@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateProfileRequest;
 
 class ProfileController extends Controller
@@ -54,12 +56,49 @@ class ProfileController extends Controller
 
         $user->save();
 
+        $profileData = [
+            'bio' => $validated['bio'] ?? '',
+        ];
+
+        if ($request->hasFile('avatar')) {
+            if ($user->profile->avatar && $user->profile->avatar !== 'profile/avatar.jpg' && Storage::disk('public')->exists($user->profile->avatar)) {
+                Storage::disk('public')->delete($user->profile->avatar);
+            }
+
+            $profileData['avatar'] = $request->file('avatar')->store('profile', 'public');
+        }
+
         $user->profile()->updateOrCreate(
             ['user_id' => $user->id],
-            ['bio' => $validated['bio'] ?? '']
+            $profileData
         );
 
         return redirect()->route('profile.show', $user->username)
                          ->with('success', 'Profile updated successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        // Validate search input
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        // Get the search term
+        $query = $request->input('query');
+
+        // If query is not empty, perform the search
+        if ($query) {
+            $users = User::with('profile')
+                ->where('name', 'LIKE', "%{$query}%")
+                ->orWhere('username', 'LIKE', "%{$query}%")
+                ->orWhere('email', 'LIKE', "%{$query}%")
+                ->get();
+        } else {
+            $users = collect(); // No users if no query
+        }
+
+        // Return the view with results
+        return view('user.search', compact('users', 'query'));
     }
 }

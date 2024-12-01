@@ -29,6 +29,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => "required|email|max:255|unique:users,email,{$userId}",
             'bio' => 'nullable|string',
             'password' => 'nullable|string|min:8',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 

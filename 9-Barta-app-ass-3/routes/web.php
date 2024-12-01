@@ -22,10 +22,13 @@ Route::middleware('auth')->group(function () {
     Route::get('profile/{username}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('profile/{username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/search', [ProfileController::class, 'search'])->name('user.search');
+    Route::post('/search', [ProfileController::class, 'search'])->name('user.search');
 
     Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::post('posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('posts/{post}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 });

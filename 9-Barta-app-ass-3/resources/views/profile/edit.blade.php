@@ -3,7 +3,7 @@
 
 @section('content')
     <!-- Profile Edit Form -->
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -32,7 +32,7 @@
                         <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                         <div class="mt-2 flex items-center gap-x-3">
                             <input class="hidden" type="file" name="avatar" id="avatar" />
-                            <img class="h-32 w-32 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
+                            <img class="h-32 w-32 rounded-full" src="{{ $user->profile->avatar_url }}"
                                 alt="Ahmed Shamim Hasan Shaon" />
                             <label for="avatar">
                                 <div

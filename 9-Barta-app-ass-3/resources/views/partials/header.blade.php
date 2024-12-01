@@ -28,6 +28,14 @@
                     <!--                >-->
                     <!--              </div>-->
                 </div>
+                <!-- Search input -->
+                <form action="{{ route('user.search') }}" method="POST" class="flex items-center">
+                    @csrf
+                    <input type="text" name="query" placeholder="Search by nickname, full name, or email..."
+                        class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
+                        value="{{ old('query') }}" />
+                    <button type="submit" class="ml-2 text-sm font-semibold">Search</button>
+                </form>
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                     <!-- This Button Should Be Hidden on Mobile Devices -->
                     <!--              <button-->
@@ -81,8 +89,8 @@
                                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
-                                    alt="Ahmed Shamim Hasan Shaon" />
+                                <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile->avatar_url }}"
+                                    alt="{{ auth()->user()->name }}" />
                             </button>
                         </div>
 
